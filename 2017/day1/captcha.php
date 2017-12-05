@@ -53,7 +53,6 @@ class CaptchaChecker
         $halfMark = count($numbers) / 2;
         $numberCount = count($numbers);
         $testNumber =array_merge(array_values($numbers), array_values($numbers));
-;
 
         for ($i=0; $i < $numberCount; $i++) {
             if ($testNumber[$i] === $testNumber[$i+$halfMark]) {
