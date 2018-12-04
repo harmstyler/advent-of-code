@@ -70,14 +70,13 @@ class ChecksumCalculator
         $offByOnes = [];
         for ($i = 0; $i < count($this->data); $i++) {
             $arr1 = str_split($this->data[$i]);
-            if (!isset($this->data[$i+1])) {
-                break;
-            }
-            $arr2 = str_split($this->data[$i+1]);
-            $test = array_diff_assoc($arr1, $arr2);
-            if (count($test) === 1) {
-                $offByOnes = array_diff_assoc($arr1, $test);
-                break;
+            foreach($this->data as $datum) {
+                $arr2 = str_split($datum);
+                $test = array_diff_assoc($arr1, $arr2);
+                if (count($test) === 1) {
+                    $offByOnes = array_diff_assoc($arr1, $test);
+                    break 2;
+                }
             }
         }
 
