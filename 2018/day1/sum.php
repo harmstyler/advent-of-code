@@ -1,5 +1,7 @@
 <?php
 
+$executionStartTime = microtime(true);
+
 class SumGenerator
 {
     private $input;
@@ -88,3 +90,8 @@ echo $sumGenerator->getTotal() ."\n";
 echo "Getting First Repeated Frequency \n";
 echo $sumGenerator->getFirstRepeatedFrequency() ."\n";
 
+$executionEndTime = microtime(true);
+
+$seconds = $executionEndTime - $executionStartTime;
+
+echo "This script took " . round($seconds, 2) . " seconds to execute.\n";
