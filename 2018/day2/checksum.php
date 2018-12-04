@@ -1,5 +1,7 @@
 <?php
 
+$executionStartTime = microtime(true);
+
 class ChecksumCalculator
 {
     private $data;
@@ -62,6 +64,25 @@ class ChecksumCalculator
 
         return array($hasTwoLettersRepeated, $hasThreeLettersRepeated);
     }
+
+    public function findDiffByOne(): string
+    {
+        $offByOnes = [];
+        for ($i = 0; $i < count($this->data); $i++) {
+            $arr1 = str_split($this->data[$i]);
+            if (!isset($this->data[$i+1])) {
+                break;
+            }
+            $arr2 = str_split($this->data[$i+1]);
+            $test = array_diff_assoc($arr1, $arr2);
+            if (count($test) === 1) {
+                $offByOnes = array_diff_assoc($arr1, $test);
+                break;
+            }
+        }
+
+        return implode($offByOnes);
+    }
 }
 
 $inputVal = file_get_contents('input.txt');
@@ -69,4 +90,16 @@ $dataRows = explode(PHP_EOL, $inputVal);
 
 $calculator = new ChecksumCalculator($dataRows);
 
+echo "checksum: ";
+
 echo $calculator->calculate() . "\n";
+
+echo "Searching for 'Off By One' chars...\n";
+
+echo $calculator->findDiffByOne() . "\n";
+
+$executionEndTime = microtime(true);
+
+$seconds = $executionEndTime - $executionStartTime;
+
+echo "This script took " . round($seconds, 2) . " seconds to execute.\n";
