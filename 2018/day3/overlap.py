@@ -57,7 +57,7 @@ for i in range(len(claims)):
         found_intersections = intersection(claims[i].map, claim.map)
         if len(found_intersections):
             claims[i].has_intersect = True
-        intersections = intersections + found_intersections
+            intersections = intersections + found_intersections
         if i % 100 == 0:
             intersections = list(set(intersections))
 
