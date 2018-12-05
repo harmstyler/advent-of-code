@@ -56,7 +56,7 @@ for record in records_list:
         current_guard = guard_dict.get(guard_num)
         continue
 
-    if action == 'wakes up':
+    if action == 'falls asleep':
         minute_start = date.minute
     else:
         minute_end = date.minute
@@ -65,7 +65,6 @@ for record in records_list:
 sleepiest_guard = Guard('Dummy')
 
 for guard_num, guard in guard_dict.items():
-    print('Guard #' + guard.guard_num + " total sleep length: " + str(guard.sleep_length))
     if guard.sleep_length > sleepiest_guard.sleep_length:
         sleepiest_guard = guard
 
