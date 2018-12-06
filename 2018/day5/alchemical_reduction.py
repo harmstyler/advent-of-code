@@ -40,10 +40,14 @@ char_list = list(chars.rstrip())
 
 # print('Found alchemical chars: ' + str(len(alchemical_chars.char_list)))
 
+smallest_polymer_len = 50000
 letter_refinements = {}
 for letter in list(map(chr, range(97, 123))):
     refined_chars = AlchemicalChars(char_list)
     refinements = refined_chars.remove_then_refine()
     letter_refinements.update({letter: len(refinements)})
     print(str(letter) + ' : ' + str(len(refinements)))
+    if len(refinements) < smallest_polymer_len:
+        smallest_polymer_len = len(refinements)
 
+print('Smallest Polymer: ' + str(smallest_polymer_len ))
